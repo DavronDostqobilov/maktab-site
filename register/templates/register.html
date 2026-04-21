@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ro'yxatdan o'tish</title>
+    <link rel="icon" href="{% static 'logo.PNG' %}">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(270deg, #1e3a8a, #6d28d9, #9333ea, #3b82f6);
+            background-size: 800% 800%;
+            animation: moveGradient 20s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        @keyframes moveGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            font-size: 2.7rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            animation: fadeInDown 1s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(14px);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 430px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        label {
+            display: block;
+            margin-top: 1.2rem;
+            margin-bottom: 0.3rem;
+            text-align: left;
+            font-weight: bold;
+            color: #fde68a;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            transition: border 0.3s, background 0.3s;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #e5e7eb;
+        }
+
+        input:focus {
+            border: 2px solid #facc15;
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        button {
+            margin-top: 1.8rem;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(to right, #facc15, #fb923c);
+            color: #111;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, background 0.4s ease;
+        }
+
+        button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+            transform: skewX(-20deg);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+            background: linear-gradient(to right, #fbbf24, #f97316);
+        }
+
+        .back-link {
+            margin-bottom: 1rem;
+            display: inline-block;
+            color: #fde047;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #facc15;
+            text-shadow: 0 0 10px #facc15;
+            transform: scale(1.05);
+        }
+
+        .error-message {
+            margin-top: 1.2rem;
+            background: rgba(255, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 10px;
+            color: #fecaca;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 1.2rem;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ro'yxatdan o'tish</h1>
+    <a class="back-link" href="{% url 'akkauntbor' %}">⬅️ Kirish</a>
+
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="name">Ism</label>
+            <input name="name" type="text" id="name" placeholder="Ismingiz" required>
+
+            <label for="surname">Familiya</label>
+            <input name="surname" type="text" id="surname" placeholder="Familiyangiz" required>
+
+            <label for="phone">Telefon raqami</label>
+            <input name="phone" type="text" id="phone" placeholder="99 123 45 67" required>
+
+            <label for="email">Email</label>
+            <input name="email" type="email" id="email" placeholder="email@example.com" required>
+
+            <label for="dob">Tug'ilgan sana</label>
+            <input name="dob" type="date" id="dob" required>
+
+            <button type="submit">🚀 Ro'yxatdan o'tish</button>
+        </form>
+
+        {% if messages %}
+        <div class="error-message">
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>                         

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NARPAY IM</title>
+  <link rel="icon" href="https://robocontest.uz/storage/uploads/profile/104173MzkiLQeULDm5jgigmgFeIjya.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d);
+      background-size: 400% 400%;
+      animation: dynamicBG 12s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    @keyframes dynamicBG {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      gap: 4vmin;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3vmin;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 2vmin;
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      aspect-ratio: 4/5;
+    }
+
+    .box:hover {
+      transform: translateY(-6px) scale(1.03);
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .box img {
+      width: 100%;
+      height: 72%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .box:hover img {
+      transform: scale(1.05);
+    }
+
+    .box span {
+      display: block;
+      padding: 1.5vmin;
+      font-size: clamp(15px, 2.5vmin, 19px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* 💻 Katta ekranlar */
+    @media (min-width: 1025px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* 📲 O‘rta ekranlar (600px – 1024px) */
+    @media (max-width: 1024px) and (min-width: 601px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3vmin;
+        justify-items: center;
+      }
+
+      /* toq elementni markazga chiqarish */
+      .container:has(.box:nth-child(odd):last-child) .box:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 80%;
+      }
+
+      .box {
+        aspect-ratio: 3/4;
+      }
+
+      .box img {
+        height: 68%;
+      }
+
+      .box span {
+        font-size: clamp(14px, 2.3vmin, 17px);
+      }
+    }
+
+    /* 📱 Kichik ekranlar (≤600px) */
+    @media (max-width: 600px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 4vmin;
+      }
+
+      .box {
+        width: 100%;
+        aspect-ratio: 3/4;
+        border-radius: 3vmin;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      }
+
+      .box img {
+        height: 65%;
+      }
+
+      .box span {
+        font-size: clamp(14px, 4vmin, 18px);
+        padding: 2vmin;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Birinchi qator -->
+    <div class="container">
+      <a href="https://t.me/s/narpay_ptma" class="box">
+        <img src="https://i.ytimg.com/vi/SNlZfCLEAyY/maxresdefault.jpg" alt="Yangiliklar">
+        <span>YANGILIKLAR</span>
+      </a>
+      <a href="{% url 'ustozlar' %}" class="box">
+        <img src="https://sun9-9.userapi.com/impf/c639720/v639720315/42977/jXi9P_TcVO4.jpg?size=468x234&quality=96&sign=6d7f350dd676e3ff6e00c3941b708b0c&type=album" alt="Ustozlar">
+        <span>USTOZLAR</span>
+      </a>
+      <a href="{% url 'o`uvchilar' %}" class="box">
+        <img src="https://www.suttontrust.com/wp-content/uploads/2019/11/C0KM0W.jpg" alt="O‘quvchilar">
+        <span>O‘QUVCHILAR</span>
+      </a>
+    </div>
+
+    <!-- Ikkinchi qator -->
+    <div class="container">
+      <a href="{% url 'bog`lanish' %}" class="box">
+        <img src="https://i.pinimg.com/originals/cd/43/c3/cd43c3f964f7898bc7472ba5f28ed848.jpg" alt="Bog‘lanish">
+        <span>BOG‘LANISH</span>
+      </a>
+      <a href="{% url 'resurslar' %}" class="box">
+        <img src="https://i.pinimg.com/originals/57/12/21/57122149cc4bed9b3fe5f80b369de46b.jpg" alt="Resurslar">
+        <span>RESURSLAR</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.box').forEach(box => {
+      box.addEventListener('click', () => {
+        box.style.transform = 'scale(0.97)';
+        setTimeout(() => {
+          box.style.transform = '';
+        }, 150);
+      });
+    });
+  </script>
+</body>
+</html>

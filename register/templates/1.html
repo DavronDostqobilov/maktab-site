@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narpay Maktabi - Kirish</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(-45deg, #1e3a8a, #6d28d9, #3b82f6, #9333ea);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 8px #facc15, 0 0 16px #facc15;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 4px #facc15, 0 0 10px #facc15;
+            }
+            to {
+                text-shadow: 0 0 12px #fde047, 0 0 24px #fde047;
+            }
+        }
+
+        .btn-effect {
+            transition: all 0.4s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-effect::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translate(-100%, -100%) rotate(45deg);
+            }
+            100% {
+                transform: translate(100%, 100%) rotate(45deg);
+            }
+        }
+
+        .card {
+            backdrop-filter: blur(16px);
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+    </style>
+</head>
+<body class="min-h-screen text-white flex flex-col justify-between">
+
+    <main class="flex-1 flex items-center justify-center p-4">
+        <div class="card rounded-2xl w-full max-w-md p-6 text-center text-white">
+            <img src="https://yt3.googleusercontent.com/8PJ_FcNDXj-9-QawfSTIz7MsAwYEHQzoEcyhDttulSMqOZn8MPyE9D61DBmujfQORrGLA9R66U0=s900-c-k-c0x00ffffff-no-rj" alt="Maktab Logosi" class="mx-auto mb-4 rounded-xl w-32 h-auto shadow-lg hover:scale-105 transition duration-500">
+            <h1 class="text-xl sm:text-2xl font-bold mb-6 uppercase glow-text">Narpay ixtisoslashtirilgan maktabi</h1>
+            <a href="{% url 'register' %}" class="btn-effect inline-block w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-lg font-bold text-base sm:text-lg tracking-wide">
+                ➤ Kirish
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-yellow-300 text-center py-3 text-sm sm:text-base shadow-inner">
+        <p class="font-mono font-semibold glow-text">Dizayner: Turdiyev Bunyodbek</p>
+        <p>Barcha huquqlar himoyalangan</p>
+    </footer>
+
+</body>
+</html>

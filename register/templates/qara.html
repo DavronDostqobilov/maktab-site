@@ -1,0 +1,1411 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static "logo.PNG" %}">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>NARPAY IM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .glass-navbar {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .glass-navbar-item {
+            color: blue;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .glass-navbar-item:hover {
+            color: #ff9900;
+            transform: translateY(-3px);
+        }
+        .glass-navbar-item::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #ff9900;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        .glass-navbar-item:hover::after {
+            transform: scaleX(1);
+        }
+        section {
+            padding: 20px;
+            display: none;
+        }
+        section.active {
+            display: block;
+        }
+        @media (max-width: 500px) {
+            .glass-navbar {
+                padding: 10px;
+            }
+            .glass-navbar-item {
+                font-size: 12px;
+                padding: 8px 10px;
+                margin: 3px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .glass-navbar-item {
+                font-size: 14px;
+            }
+        }
+        .spa1 {
+            background-image: url('{% static "JOIN OUR TELEGRAM-min.gif" %}');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            overflow: hidden;
+        }
+.card-container {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                height: 82vh;
+                flex-wrap: wrap;
+            }
+            .card {
+                width: 20%;
+                height: 70vh; /* Reduced height */
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 10px;
+                padding: 20px;
+                text-align: center;
+                transition: transform 0.3s, box-shadow 0.3s;
+                margin-bottom: 20px;
+                perspective: 1000px;
+            }
+            .card:hover {
+                transform: translateY(-10px) rotateY(10deg);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                background: rgba(255, 255, 255, 0.2);
+            }
+            .card-img {
+                width: 93%;
+                transition: transform 0.3s;
+            }
+            .card:hover .card-img {
+                transform: scale(1.1);
+            }
+            .card-title {
+                color: aqua;
+                font-size: 1.5em;
+                animation: fadeIn 0.5s ease-in;
+            }
+            .card-link {
+                font-size: 1.2em;
+            }
+            @media (max-width: 768px) {
+                .card {
+                    width: 45%;
+                }
+                .card-title {
+                    font-size: 1.5em;
+                }
+                .card-link {
+                    font-size: 1em;
+                }
+            }
+            @media (max-width: 480px) {
+                .card {
+                    width: 100%;
+                }
+                .card-title {
+                    font-size: 1.2em;
+                }
+                .card-link {
+                    font-size: 0.9em;
+                }
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .ai-section{
+                background-size: 100vw 100vh;
+                width: 100vw;
+                height: 100vh;
+            }
+            .boglanish{
+                background-image: url({% static 'bg-contact.png'%});
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+    </style>
+</head>
+<body>
+    <div class="glass-navbar cursor-pointer">
+        <a class="glass-navbar-item" onclick="showSection('spa-section1')">YANGILIKLAR</a>
+        <a class="glass-navbar-item" onclick="showSection('spa-section2')">USTOZLAR</a>
+        <a class="glass-navbar-item" onclick="showSection('spa-section3')">O'QUVCHILAR</a>
+        <a class="glass-navbar-item" onclick="showSection('spa-section4')">BOG'LANISH</a>        
+        <a style="text-decoration: none;" class="glass-navbar-item" onclick="showSection('spa-section5')">O'QUVCHILAR UCHUN RESURSLAR</a>        
+    </div>
+    <section id="spa-section1" class="active spa1 center"> 
+        <h1><a class="typing-effect" style="color: white;" href="https://t.me/s/narpay_ptma">@narpay_ptma</a></h1>
+        </section>
+    <section id="spa-section2"> 
+        <fieldset style="width: 100%;" class="USTOZLAR rgb-border">
+            <h1 class="center animation-text">USTOZLAR</h1>
+            <img style="width: 100%;" src="{%static 'ustozlar.png'%}" alt="USTOZLAR">
+            <h1 class="center">NARPAY IXTISOSLASHTIRILGAN MAKTAB USTOZLARI BOSHQA MAKTABLARGA MA'LUMOT ALMASHGANI HAM BORISHADI</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="qayumov rgb-border">
+            <h1 class="center animation-text">QAYUMOV TO'YCHIBOY</h1>
+            <img style="width: 100%;" src="{% static 'qayumov.png' %}" alt="QAYUMOV TO'YCHIBOY">
+            <h1 class="center">Qayumov To'ychiboy. Narpay Ixtisoslashtirilgan maktabining fizika fani o'qtuvchisi, ko'plab dimplom, sertifikat, ko'krak nishonlar egasi. Shuningdek 7-D sinf rahbari hisoblanadi</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="JURAQULOV rgb-border">
+            <h1 class="center animation-text">DONIYOR JO'RAQULOV</h1>
+            <img style="width: 100%;" src="{% static 'Juraqulov.png'%}" alt="JURAQULOV DONIYOR">
+            <h1 class="center">Doniyor Juraqulov. Narpay tuman Ixtisoslashtirilgan maktabining informatika o'qtuvchisi, ko'plab sertifikatlar egasi, google tashakkurnomasi sohibi. Shuningdek 6-A sinf rahbari hisoblanadi</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="algebra rgb-border">
+            <h1 class="center animation-text">Madalov Erali
+            </h1>
+            <img style="width: 100%;" src="{% static 'algebra.jpg'%}" alt="algebra">
+            <h1 class="center">Narpay tuman ixtisoslashtirilgan maktabining oliy toifali matematika fani o'qtuvchisi. Xalqaro matematika fani bo'ycha sertifikat sohibi. 10-B sinf rahbari.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Boboqulova rgb-border">
+            <h1 class="center animation-text">Boboqulova Aziza</h1>
+            <img style="width: 100%;" src="{% static 'boboqulova.jpg'%}">
+            <h1 class="center">Boboqulova Aziza. Narpay Ixtisoslashtirilgan maktabining ingliz tili fani o'qtuvchisi. C1 darajali, malakali, o'quvchilari ham IELTS dan 6-7 score to'plashgan.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="ESANOVA HILOLA rgb-border">
+            <h1 class="center animation-text">ESANOVA HILOLA</h1>
+            <img style="width: 100%;" src="{% static 'Esanova.png'%}" alt="ESANOVA HILOLA">
+            <h1 class="center">Esanova Hilola Usmonovna. Narpay tuman ixtisoslashtirilgan maktabning tarix fani o'qtuvchisi. Tumandagi eng ilg'or ustoz sifatida hokim tashakkurnomasi sohibasi, turli diplomlarga ega, tarix fanidan Respublikadagi eng ilg'or ustozlaridan.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Eshmonov Zuhriddin  rgb-border">
+            <h1 class="center animation-text">Eshmonov Zuhriddin</h1>
+            <img style="width: 100%;" src="{% static 'Eshmonov Zuhriddin.jpg'%}" alt="Eshmonov Zuhriddin">
+            <h1 class="center">MAKTABNING GEOGRAFIYA USTOZI. O'ZINING O'ZIGA XOS TA'LIM O'QITISH SISTEMASIGA EGA. NAFAQAT IXTISOSLASHTIRILGAN MAKTABDA BALKI BOSHQA MAKTABLARDA TAJRIBAGA EGA</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="ALIQULOV JALOLIDDIN  rgb-border">
+            <h1 class="center animation-text">ALIQULOV JALOLIDDIN</h1>
+            <img style="width: 100%;" src="{% static 'jaloliddin.jpg'%}" alt="ALIQULOV JALOLIDDIN">
+            <h1 class="center">NARPAY TUMAN IXTISOSLASHTIRILGAN MAKTABNING TARBIA, HUQUQ BO'YCHA MUTAXASIS.  U o’quvchilarga hurmat bilan munosabatda bo’ladi, ularni tinglaydi va ularga yordam berishga harakat qiladi. Uning darslari qiziqarli va foydali, u o’quvchilarga hayotda kerak bo’ladigan ko’plab narsalarni o’rgatadi. U o’quvchilarning shaxsiy rivojlanishiga katta hissa qo’shadi va ularni yaxshi insonlar bo’lishga undaydi.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="JUMAYEV RUSTAM rgb-border">
+            <h1 class="center animation-text">JUMAYEV RUSTAM</h1>
+            <img style="width: 100%;" src="{% static 'Jumayev Rustam.png'%}" alt="JUMAYEV RUSTAM">
+            <h1 class="center">Jumayev Rustam. Narpay tuman ixtisoslashtirilgan maktabining jismoniy tarbiya o'qtuvchisi. Jumayev Rustam nafaqat o'zi oliy tozfali o'qtuvchi balki balki ustozning o'quvchilari ham Respublikada yuqori o'rinlarga ega.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="KIMYO rgb-border">
+            <h1 class="center animation-text">Mustafoyev Isroil</h1>
+            <img style="width: 100%;" src="{% static 'kimyo.jpg'%}" alt="KIMYO">
+            <h1 class="center">Mustafoyev Isroil. Narpay tumanm ixtisoslashtirilgan maktabining kimyo fani o'qtuvchisi. Xalq ta'lim vazir jamg'armasi sohibi. Kimyo, matematika, fizika bo'ycha chuqur bilimga ega. Yosh o'sayotgan bolalarga o'zining alohida ta'lim o'tish tizimi bilan yosh o'quvchilarda o'zgacha tasurot qoldirgan.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="NIZOMOV AKMAL rgb-border">
+            <h1 class="center animation-text">NIZOMOV AKMAL</h1>
+            <img style="width: 100%;" src="{% static 'nizomov.png'%}" alt="NIZOMOV AKMAL">
+            <h1 class="center">Nizomov Akmal. Narpay tuman Ixtisoslashtirilgan maktabining fizika, scince fanlari ustozi. Oliy ma'lumotli, ko'plab diplomlar egasi.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="NABIJONOV OBIDJON rgb-border">
+            <h1 class="center animation-text">NABIJONOV OBIDJON</h1>
+            <img style="width: 100%;" src="{% static 'nabijonov_obidjon.JPG'%}" alt="NABIJONOV OBIDJON">
+            <h1 class="center">NABIJONOV OBIDJON. NARPAY TUMAN IXTISOSLASHTIRILGAN MAKTABNING MUSIQA FANI O'QTUVCHI. O'ZINING O'ZIGA XOS TA'LIM O'QITISH TIZIMI, BOLALARNI MUSIQAGA QIZQIQTIRISHI BILAN O'QUVCHILAR QALBIDAN JOY OLGAN. O'ZBEK VA MIQYOSIDA TURLI TANLOVLARGA QATNASHGAN
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="XASANOV TO'LQIN rgb-border">
+            <h1 class="center animation-text">XASANOV TO'LQIN</h1>
+            <img style="width: 100%;" src="{% static 'xasanov.png'%}" alt="XASANOV TO'LQIN">
+            <h1 class="center">XASANOV TO'LQIN. NARPAY TUMAN IXTISOSLASHTIRILGAN MAKTABNING INGLIZ TILI FANI O'QTUVCHISI. O'ZINIMG KO'P YILLIK TAJRIBASI VA ERISHGAN YUTUQLARI TUFAYLI, USTOZNING O'QUVCHILARI HAM HALQARO DARAJADIGI SERTIFIKATLAR SOHIBIGA AYLANIB KELMOQDA.
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="NUSRATOV ZOIR rgb-border">
+            <h1 class="center animation-text">NUSRATOV ZOIR</h1>
+            <img style="width: 100%;" src="{% static 'ZOIR.png'%}" alt="NUSRATOV ZOIR">
+            <h1 class="center">NUSRATOV ZOIR. NARPAY TUMAN IXTISOSLASHTIRILGAN MAKTABNING MATEMATIKA FANI O'QTUVCHI. O'ZBEKISTON BO'YCHA ENG ZO'R, TANIQLI HAMDA KO'PLAB YUTUQLAR SOHIBI
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="NURILLAYEVA SANOBAR rgb-border">
+            <h1 class="center animation-text">NURILLAYEVA SANOBAR</h1>
+            <img style="width: 100%;" src="{% static 'nuridinovna.png'%}" alt="NURILLAYEVA SANOBAR">
+            <h1 class="center">Sanobar Nurilayeva. Narpay tuman Ixtisoslashtirilgan maktabining matematika fani o'qtuvchisi. Narpay tuman ixtisoslashtirilgan maktabi matematika fani oʻqituvchisi Nurillayeva Sanobar GMAT xalqaro sertifikatini qoʻlga kiritdi.
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="PARMONOV JASUR VA DILAFRUZ SHERALIYEVNA rgb-border">
+            <h1 class="center animation-text">PARMONOV JASUR VA DILAFRUZ SHERALIYEVNA</h1>
+            <img style="width: 100%;" src="{% static 'parmonov.png'%}" alt="PARMONOV JASUR VA DILAFRUZ SHERALIYEVNA">
+            <h1 class="center">Parmonov Jasur va Dilafruz Sheraliyevna. Parmonov Jasur - Narpay tuman Ixtisoslashtirilgan maktabining tarix dani o'qtuvchisi. oliiy ma'lumotli. Dilafruz Sheraliyevna. Narpay tuman Ixtisoslashtirilgan maktabining ona tili, adabiyot fani o'qtuvchisi. Oliy darajali ustoz.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="nasiba shadiyeva rgb-border">
+            <h1 class="center animation-text">Nasiba Shadiyeva</h1>
+            <img style="width: 100%;" src="{% static 'shadeyiva.png'%}" alt="nasiba shadiyeva">
+            <h1 class="center">Nasiba Shadeyiva. Narpay tuman Ixtisoslashtirilgan maktabining ingliz tili o'qtuvchisi. Turli ko'krak medallari, sertifikatlar sohibasi. C1 darajasiga ega. 2005-yil O'zDJTU ni tamomlagan. Shuningdek 8-T sinf rahbari
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="RAXMATOV ABBOS rgb-border">
+            <h1 class="center animation-text">RAXMATOV ABBOS</h1>
+            <img style="width: 100%;" src="{% static 'ABBOS ONA TILI.png'%}" alt="RAXMATOV ABBOS">
+            <h1 class="center">RAXMATOV ABBOS. Narpay tuman Ixtisoslashtirilgan maktabining ona tili hamda adbiyot fani o'qtuvchisi. O'zbekistonning nufuzli unversetitlarida tahsil olib, hozirda ixtisoslashtirilgan maktabda dars bermoqda. Ustozning bolalar bilan o'zgacha munosabiti boshqa maktabimiz o'qtuvchilarimiz kabi o'ziga xos va ajoyib
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Nazarov Nizomiddin rgb-border">
+            <h1 class="center animation-text">Nazarov Nizomiddin</h1>
+            <img style="width: 100%;" src="{% static 'nazarov nizomiddin.JPG'%}" alt="Nazarov Nizomiddin">
+            <h1 class="center">Nazarov Nizomiddin. Narpay tuman Ixtisoslashtirilgan maktabining ART(ixtisoslashtirilgan maktabda musiqa va tasviriy san'at birlashgan fan) o'qtuvchisi. Ustoz darsni nafaqat rasm chizish balki, musiqa eshitish,narsalar yasash, filmlar olish kabi qiziqarli va hordiq chiqaruvchi ravishda darsni tashkillashtiradi
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Orif Pardayev rgb-border">
+            <h1 class="center animation-text">Orif Pardayev</h1>
+            <img style="width: 100%;" src="{% static 'Pardayev Orif.png'%}" alt="Pardayev Orif">
+            <h1 class="center">Orif Pardayev. Narpay tuman Ixtisoslashtirilgan maktabining geometriya fani o'qtuvchisi. Bolalarga aniqlik orqali dars berishi orqali ularni kelajakda yuqori lavozimda ishlashiga sababchi bo'lgan.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Toshboltayev rgb-border">
+            <h1 class="center animation-text">Toshboltayev</h1>
+            <img style="width: 100%;" src="{% static 'toshboltayev.png'%}" alt="Toshboltayev">
+            <h1 class="center">Toshboltayev. Narpay tuman Ixtisoslashtirilgan maktabining matematika va geometriya fani o'qtuvchisi. Bolalarga aniqlik orqali dars berishi, qiziqarli masalalar orqali matematikaga qiziqtirishi kabi ajoyib usullariga ega ustoz.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="SOHIB rgb-border">
+            <h1 class="center animation-text">Eshmurodov Sohibjon</h1>
+            <img style="width: 100%;" src="{% static 'sohibUstoz.jpg'%}" alt="SOHIB">
+            <h1 class="center">Eshmurodov Sohibjon. Narpay tuman Ixtisoslashtirilgan maktabining ingliz tili o'qtuvchisi. Nafaqat ta'lim tizimidagi yuqori darajadagi o'qitish tizimi, balki xalqaro miqyosdagi darslar va sertifikalari mavjud ustoz.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Shoira Toxirovna rgb-border">
+            <h1 class="center animation-text">Shoira Toxirovna</h1>
+            <img style="width: 100%;" src="{% static 'Toxirovna.png'%}" alt="Shoira Toxirovna">
+            <h1 class="center">Shoira Tohirovna. Narpay tuman Ixtisoslashtirilgan maktabining rus tili fani o'qtuvchisi. Ko'plab deplomlar sohibasi.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="GAVHAR USMONOVA rgb-border">
+            <h1 class="center animation-text">GAVHAR USMONOVA</h1>
+            <img style="width: 100%;" src="{% static 'Usmonova.png'%}" alt="GAVHAR USMONOVA">
+            <h1 class="center">    <br/>  ✔️ 1993 yil SamDU O‘zbek filologiyasi fakultetini imtiyozli  tamomlagan. Oliy toifali o‘qituvchi.<br/>
+                ✔️“O‘zbekiston Respublikasi xalq ta’limi a’lochisi”, “O‘zbekiston Respublikasi mustaqilligining 30-yilligi” ko‘krak nishonlari sohibasi.
+              <br/>   ✔️ DTM tomonidan o‘tkazilgan “Pedagogik testlarning ijodkor muallifi” respublika tanlovining uch karra g‘olibi. 
+               <br/>  ✔️ “O‘zbekiston ovozi” “Ma’rifat” “Navqiron Narpay” gazetalarida o‘nlab ilmiy va publisistik maqolalari chop etilgan.
+               <br/>  ✔️ Umumta'lim fanlarini bilish darajasi bo‘yicha milliy sertifikatini qo'lga kiritgan.O'z bilim va malakasini namoyish etib, 80.9% natijaga erishdi.
+                 <br/>
+              <br/>   Bu ajoyib yutuq va ustozimizning fidokorona mehnatining mahsuli!</h1>
+              <br/></h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Maktab hamshirasi rgb-border">
+            <h1 class="center animation-text">Maktab hamshirasi</h1>
+            <img style="width: 100%;" src="{% static 'hamshira.png'%}" alt="Maktab hamshirasi">
+            <h1 class="center">Maktab hamshirasi. Narpay tuman Ixtisoslashtirilgan maktabida faolyat yurutadi. Bizning maktabimizda nafaqat dars mukammal ravishda balki sog'liq ham yuqori o'rinda turadi</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="Maktab psixologi rgb-border">
+            <h1 class="center animation-text">Maktab psixologi</h1>
+            <img style="width: 100%;" src="{% static 'psixolog.png'%}" alt="Maktab psixologi">
+            <h1 class="center">Maktab psixologi. Narpay tuman Ixtisoslashtirilgan maktabida bolalar bilan ishlash uchun maktab psixologi bor. Nafaqat bolalar bilan darsdan tashqari vaqtda balki mahsus "Psixologik trening" kabi to'garaklarda ham bolalar bilan ishlaydi. Ustozimiz bu kabi ishlari bilan maktab o'quvchilarini ilm olishini yanada qiziqarli qilib beradi.</h1>
+        </fieldset>
+    </section>
+    <section id="spa-section3"> <!--O'QUVCHILAR-->
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">6-A</h1>
+            <img style="width: 100%;" src="{% static '6sinf.jpg'%}" alt="6-A">
+            <h1 class="center">MAKTABDAGI ENG YOSH SINFLARDAN BIRI. AHIL ZAKOVAT, SPORT, BILIM GURUHLARIGA EGA SINF</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">7-A</h1>
+            <img style="width: 100%;" src="{% static '7-a.jpg'%}" alt="7-A">
+            <h1 class="center">science fanidagi 7-A sinfi
+            </h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">7-B</h1>
+            <img style="width: 100%;" src="{% static '7-b.jpg'%}" alt="7-B">
+            <h1 class="center">MAKTABLARDA TURLI XIL TADBIRLAR O'TKAZILINADI. BU KABI TADBIRLARDA QATNASHGAN 7-B SINFI.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">7-D</h1>
+            <img style="width: 100%;" src="{% static '7-D.png'%}" alt="7-D">
+            <h1 class="center">NARPAY TUMAN TUMAN IXTISOSLASHTIRILGAN MAKTABINI ENG FAOL SINFI. NAFAQAT DARSLARDA BALKI BOSHQA TADBIRLARDA O'ZLARINI KO'RSATADI. BU RASMDA ULAR TOMONIDA IJRO QILINGAN RASMI BOR. BU TADBIR MAKTABDAGI ENG UNUTILMAS VA ESDAQOLARLI TADBIR BO'LGAN.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">8-sinflar</h1>
+            <img style="width: 100%;" src="{% static '8-sinflar.jpg'%}" alt="8">
+            <h1 class="center">BIZNING MAKTABIMIZDA NAFAQAT TADBIRLAR, ZAKOVAT, SPORT, DASTURLASH, KITOBXONLIK KABI MUSOBOQALAR BALKI TURLI XIL SPEKTAKILLAR HAM O'TKAZILINADI.</h1>
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">IQTIDORLI O'QUVCHILAR</h1>
+            <video src="{% static 'kashfiyot.mp4'%}" controls style="width: 100%;">
+                Your browser does not support the video tag.
+            </video>      
+            <h1 class="center animation-text">MUSIQA VAQTI</h1>
+            <video src="{% static 'MusiqaVaqti.mp4'%}" controls style="width: 100%;">
+                Your browser does not support the video tag.
+            </video>      
+            <h1 class="center animation-text">ONA TILIM-G'URURIM FAXRIM</h1>
+            <video src="{% static 'OnaTili.mp4'%}" controls style="width: 100%;">
+                Your browser does not support the video tag.
+            </video>
+            <h1 class="center animation-text">MAKTABDA USTOZ QADRI SAHNA KO'RINISHI</h1>
+            <video src="{% static 'ustozVID.mp4'%}" controls style="width: 100%;">
+                Your browser does not support the video tag.
+            </video>
+            <h1 class="center animation-text">MAKTANDAGI ZAKOVAT JARYONI</h1>
+            <img style="width: 100%;" src="{% static 'zakovat.jpg'%}" alt="YUTUQLAR">
+            <h1 class="center animation-text">MAKTANDAGI OCHIQ ESHIKLAR KUNI</h1>
+            <img style="width: 100%;" src="{% static 'ochiqEshik.jpg'%}" alt="YUTUQLAR">
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">YUTUQLAR</h1>
+            <img style="width: 100%;" src="{% static 'fvb1.jpg'%}" alt="YUTUQLAR">
+            <h1 class="center animation-text">FVB MUSOBAQALARIDAGI YUTUQLAR</h1>
+            <img style="width: 100%;" src="{% static 'fvb2.jpg'%}" alt="YUTUQLAR">
+            <h1 class="center animation-text">FVB MUSOBAQALARIDAGI YUTUQLAR</h1>
+            <img style="width: 100%;" src="{% static 'fvb3.jpg'%}" alt="YUTUQLAR">
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">MAKTAB SARDORLARI</h1>
+            <img style="width: 100%;" src="{% static 'sardor_maktab.jpg'%}" alt="Maktab Sardorlari">
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">IELTS VA HALQORO SERTIFIKAT SOHIBLARI VA OLIMPIADA G'OLIBLARI</h1>
+            <img style="width: 100%;" src="{% static 'ielts.jpg'%}" alt="IELTS VA HALQORO SERTIFIKAT SOHIBLARI VA OLIMPIADA G'OLIBLARI">
+        </fieldset>
+        <fieldset style="width: 100%;" class="rgb-border">
+            <h1 class="center animation-text">MAKTAB IT SARDORI TOMONIDAN TAYYORLANGAN SUN'IY INTELEKT</h1>
+            <video src="{% static 'vidai.mp4'%}" controls style="width: 100%;">
+                Your browser does not support the video tag.
+            </video>
+        </fieldset>
+    </section>
+    <section id="spa-section4" class="boglanish">
+        
+        <div class="card-container">
+            <br>
+
+            <div class="card">
+                <img class="card-img" src="{% static 'zovuch.jpg'%}" alt="ZOVUCH">
+                <h1 class="card-title">O'QUV ISHLARI BO'YICHA DIREKTOR O'RINBOSARI: <BR> <SPAN style="color: yellow">ERBOBOYEV JASURBEK SUHBATULLAYEVICH</SPAN></h1>
+                <p style="color: rgb(0, 255, 0);" class="card-link">TELEFON RAQAM:<br><span>+998945389000</span></p>
+            </div>
+            <br>
+            <div class="card">
+                <img class="card-img" src="{% static 'director.JPG'%}" alt="MAKTAB DIREKTORI">
+                <h1 class="card-title">MAKTAB DIREKTORI:<BR><span style="color: yellow">YO'LDASHEV BEKZOD BAHRIDDINIVICH<span></h1>
+                <p  style="color: rgb(0, 255, 0);" class="card-link">TELEFON RAQAM:<br><span style="color: rgb(0, 255, 0);">+998944716670</span></p>
+            </div>
+            <div class="card">
+                <img class="card-img" src="{% static 'hurramov.jpg'%}" alt="MA'NAVIYAT MA'RIFAT BO'YCHA DIREKTOR O'RINBOSI">
+                <h1 class="card-title">MA'NAVIY MA'RIRIY BO'YICHA DIREKTOR O'RINBOSARI: <br><span style=" color: yellow;"> XURRAMOV BAXTIYOR FARXODOVICH<span></h1>
+                <p  style="color: rgb(0, 255, 0);" class="card-link">TELEFON RAQAM:<br><span>+998505009069</span></p>
+            </div>
+        </div>
+    </section>    
+    <section  class="ai-section" id="spa-section5">
+        <h1 class="center">ONLINE KUTUBXONA</h1>
+    
+        <div class="card-container">
+            <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/5-sinf-darsliklar">
+            <div class="cardL">
+                <h1>5-SINF</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/6-sinf-darsliklar"><h1>6-SINF</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/7-sinf-darsiklar"><h1>7-SINF</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/8-sinf-darsliklar"><h1>8-SINF</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/9-sinf-darsliklar"><h1>9-SINF</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/10-sinf-darsliklar"><h1>10-SINF</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/11-sinf-darsliklar"><h1>11-SINF</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/adabiyotlar/chet-el-adabiyoti/"><h1>Chet el-asarlar</h1></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/adabiyotlar/ozbek-adabiyoti"><h1>O'zbek asarlar</h1></a>
+            </div>
+            
+        </div>
+        <br><br><br><br><br>
+        <div class="translate">   
+            <h1 class="transl title">
+                <a href="https://translate.google.com/?sl=uz&tl=en&op=translate" target="_blank">Tarjimon Ilovasi</a>
+            </h1>
+            <form id="translationForm" method="POST" action="{% url 'main' %}">
+                {% csrf_token %}
+                <textarea id="inputText" name="inputText" placeholder="Matnni kiriting...">{{ input_text }}</textarea>
+                <select id="languageSelect" name="languageSelect">
+                    <option value="uzb" {% if language_select == 'uzb' %}selected{% endif %}>O'zbek tiliga</option>
+                    <option value="en" {% if language_select == 'en' %}selected{% endif %}>Ingliz tiliga</option>
+                </select>
+                <button type="submit" class="trans-btn">Tarjima qilish</button>
+            </form>
+            
+            
+            {% if translated_text %}
+                <div id="result" class="result">{{ translated_text }}</div>
+            {% endif %}
+        </div>
+        <hr>
+        <style>
+            .center {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+    
+            .calculator {
+                background: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                margin: auto;
+            }
+    
+            .display {
+                width: 100%;
+                height: 50px;
+                background: #f1f3f4;
+                border: none;
+                border-radius: 5px;
+                text-align: right;
+                font-size: 1.5em;
+                padding: 10px;
+                box-sizing: border-box;
+                margin-bottom: 15px;
+            }
+    
+            .buttons {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+    
+            button {
+                height: 50px;
+                background: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1.2em;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+    
+            button:hover {
+                background: #0056b3;
+            }
+    
+            .operator {
+                background: #ff9500;
+            }
+    
+            .operator:hover {
+                background: #cc7a00;
+            }
+    
+            .clear {
+                background: #f44336;
+            }
+    
+            .clear:hover {
+                background: #c33d2e;
+            }
+        </style>
+        <h1 class="center">Online Calculator</h1>
+        <div class="calculator">
+            <input type="text" class="display" id="display" disabled>
+            <div class="buttons">
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button class="operator" onclick="appendValue('/')">/</button>
+    
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('6')">6</button>
+                <button class="operator" onclick="appendValue('*')">*</button>
+    
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button class="operator" onclick="appendValue('-')">-</button>
+    
+                <button onclick="appendValue('0')">0</button>
+                <button onclick="appendValue('.')">.</button>
+                <button onclick="calculate()">=</button>
+                <button class="operator" onclick="appendValue('+')">+</button>
+    
+                <button class="clear" onclick="clearDisplay()">C</button>
+            </div>
+        </div>
+        <hr>
+    
+        <script>
+            const display = document.getElementById('display');
+    
+            function appendValue(value) {
+                display.value += value;
+            }
+    
+            function clearDisplay() {
+                display.value = '';
+            }
+    
+            function calculate() {
+                try {
+                    display.value = eval(display.value);
+                } catch (e) {
+                    alert('Invalid input');
+                    clearDisplay();
+                }
+            }
+        </script>
+
+
+<style>
+            /* Asosiy chiziq */
+hr {
+    border: none; /* Normal borderni olib tashlash */
+    height: 2px; /* Chiziqning balandligi */
+    background-color: #3498db; /* Asosiy chiziq rangi */
+    margin: 40px 0; /* Bo'shliq */
+    position: relative;
+    transition: all 0.3s easez1zz-in-out; /* Animatsiya qo'shish */
+}
+
+/* Hover effekti */
+hr:hover {
+    background-color: #ff6347; /* Hoverda yorqin rang */
+    width: 100%; /* Hoverda chiziq kengayadi */
+    box-shadow: 0 0 20px rgba(255, 99, 71, 0.8); /* Yorqin glow effekti */
+}
+
+/* Chiziqning ikki tomonida kengayadigan effekt */
+hr:before, hr:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: #3498db;
+    transition: all 0.3s ease-in-out; /* Animatsiya */
+}
+
+hr:before {
+    left: -20px; /* Chiziqning chap tomonida */
+}
+
+hr:after {
+    right: -20px; /* Chiziqning o'ng tomonida */
+}
+
+/* Hoverda ikkala tomon ham kengayadi */
+hr:hover:before, hr:hover:after {
+    width: 50px; /* Hoverda kengayish */
+    background-color: #ff6347; /* Hoverda rang o'zgarishi */
+}
+
+        </style>
+        <div class="container">
+            <h1 class="main-title">Wikipedia Ma'lumot Qidirish</h1>
+            
+            <!-- Qidiruv formasi -->
+            <div class="search-box">
+                <input type="text" id="query" placeholder="Ma'lumot qidirish...">
+                <button onclick="searchWiki()" class="search-button">Qidirish</button>
+            </div>
+            
+            <!-- Qidiruv natijalari -->
+            <div id="results" class="results"></div>
+        </div>
+        <hr>
+        <div class="WaterCard center width75">
+            <h1 class="center">TAKLISH VA G'OYALARINGIZNI BIZGA YUBORING!<h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" class="input" id="taklif" name="taklif" placeholder="Fikrlaringizni yozing..">
+                    <button class="button-30" type="submit">Yuborish</button>
+
+<style>
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+</style>
+                </form>
+        </div>
+        <style>
+            /* Global stil */
+            #taklif{
+                width: 75%;
+            }
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Asosiy konteyner */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sarlavha */
+.main-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* Qidiruv bo'limi */
+.search-box {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Input maydon */
+.search-box input {
+    padding: 12px;
+    width: 70%;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Qidirish tugmasi */
+.search-button {
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #2980b9;
+}
+
+/* Natijalar */
+.results {
+    margin-top: 20px;
+}
+
+.result-item {
+    border-bottom: 1px solid #ddd;
+    padding: 20px 0;
+    margin-bottom: 15px;
+}
+
+.result-item h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #2980b9;
+}
+
+.result-item h3 a {
+    text-decoration: none;
+    color: #2980b9;
+}
+
+.result-item h3 a:hover {
+    text-decoration: underline;
+}
+
+.result-item p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* Natija bo'limi: bo'sh holat */
+.no-results {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #e74c3c;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+        </style>
+        <hr>
+        <div style="width: 75%; height: 20%; font-size: 100px; background-image: url('{% static 'map.png' %}');" class="italic arial-text  hover-map-text center WaterCard">
+                <a style="text-decoration: none;" href="https://maps.app.goo.gl/EqwNmyZCFiTu9ySK7">
+                    𝕄𝕒𝕜𝕥𝕒𝕓 𝕛𝕠𝕪𝕝𝕒𝕤𝕙𝕦𝕧𝕚
+                </a>
+        </div>
+        
+    <!--    <hr>           -->
+        <ul>
+            {% for image in images %}
+            <li>
+                <h3>{{ image.title }}</h3>
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="jadval-rasm">
+            </li>
+            {% endfor %}
+        </ul>
+        <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <style>
+            /* Asosiy galereya konteyneri */
+ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 ta rasm bir qatorga joylashadi */
+    gap: 20px;
+    padding: 20px;
+    list-style-type: none;
+    margin: 0;
+}
+
+/* Har bir element uchun stil */
+ul li {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Rasmni o'lchami va joylashuvi */
+.jadval-rasm {
+    width: 100%;
+    height: auto;
+    object-fit: cover;  /* Rasmni moslashtiradi */
+    transition: transform 0.3s ease;
+}
+
+/* Hover effekti: rasmni kattalashtirish */
+ul li:hover .jadval-rasm {
+    transform: scale(1.1);  /* Rasmni kattalashtirish */
+}
+
+/* Hover effekti: elementni yuqoriga ko'tarish va soya qo'shish */
+ul li:hover {
+    transform: translateY(-10px); /* Itemni yuqoriga surish */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Yengil soya effekt */
+}
+
+/* Sarlavha uchun stil */
+ul li h3 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Sarlavhani hover qilganda rangini o'zgartirish */
+ul li:hover h3 {
+    color: #007bff; /* Hoverda rangni o'zgartirish */
+}
+
+/* Media effekti uchun kichik ekranlarga moslashuv */
+@media screen and (max-width: 1024px) {
+    ul {
+        grid-template-columns: repeat(3, 1fr); /* 3 ta rasm bir qatorga */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    ul {
+        grid-template-columns: repeat(2, 1fr); /* 2 ta rasm bir qatorga */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    ul {
+        grid-template-columns: 1fr; /* 1 ta rasm bir qatorga */
+    }
+}
+
+        </style>
+        <!-----------<hr>------------->
+        
+
+        <style>
+
+.hover-map-text{
+    color: black;
+    font-size: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: darkblue;
+}
+.hover-map-text:hover{
+    color: darkblue;
+    border-radius: 5px;
+    background-color: darkblue;
+    cursor: pointer;
+}
+.dars-jadval {
+    display: flex;
+    flex-wrap: wrap; /* Ekran kichrayganda jadvallar yangi qatorda joylashadi */
+    gap: 20px; /* Jadval orasidagi bo'shliq */
+    justify-content: space-between; /* Har bir jadval orasida bo'shliq */
+}
+
+/* Har bir jadvalga 100% kenglik */
+.glowing-table, .glowing-blue-table, .glowing-green-table, .glowing-red-table, .glowing-yellow-table {
+    width: 100%; /* Har bir jadvalga kenglikni 100% beramiz */
+    box-sizing: border-box; /* Padding va borderlar hisobga olinadi */
+}
+
+/* Responsivlik: kichik ekranlar uchun */
+@media screen and (max-width: 768px) {
+    .dars-jadval {
+        flex-direction: column; /* Jadvalni vertikal tarzda joylashtirish */
+        align-items: center; /* Har bir jadvalni markazga joylashtirish */
+    }
+
+    .glowing-table, .glowing-blue-table, .glowing-green-table, .glowing-red-table, .glowing-yellow-table {
+        width: 65%; /* Kichik ekranlar uchun jadval kengligi 100% */
+    }
+    .hover-map-text{
+        font-size: 50px;
+    }
+}
+
+        </style>
+
+        
+
+
+
+        <div class="dars jadval">
+
+        </div>
+
+
+
+
+
+
+        <script>
+            // Wikipedia API’dan ma'lumot olish
+async function searchWiki() {
+    const query = document.getElementById('query').value;
+    if (!query) {
+        alert('Iltimos, so\'rovni kiriting!');
+        return;
+    }
+
+    const url = `https://uz.wikipedia.org/w/api.php?`
+              + `action=query&format=json&origin=*&list=search&srsearch=${query}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const results = data.query.search;
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '';
+
+        if (results.length === 0) {
+            const noResultsMessage = document.createElement('div');
+            noResultsMessage.classList.add('no-results');
+            noResultsMessage.innerHTML = 'Hech qanday natija topilmadi.';
+            resultsDiv.appendChild(noResultsMessage);
+            return;
+        }
+
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.classList.add('result-item');
+
+            const title = document.createElement('h3');
+            title.innerHTML = `<a href="https://uz.wikipedia.org/?curid=${item.pageid}" target="_blank">${item.title}</a>`;
+
+            const snippet = document.createElement('p');
+            snippet.innerHTML = item.snippet + '...';
+
+            resultItem.appendChild(title);
+            resultItem.appendChild(snippet);
+
+            resultsDiv.appendChild(resultItem);
+        });
+    } catch (error) {
+        console.error('Xatolik yuz berdi:', error);
+    }
+}
+
+        </script>
+
+    <style>     
+    /* Overall container styling */
+    .transl {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    /* Title style */
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #4CAF50;
+    }
+
+    /* Form styling */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Textarea styling */
+    #inputText {
+        width: 100%;
+        height: 120px;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        resize: vertical;
+        outline: none;
+    }
+
+    #inputText:focus {
+        border-color: #4CAF50;
+    }
+
+    /* Language selection styling */
+    #languageSelect {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: #fff;
+    }
+
+    /* Button styling */
+    .trans-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .trans-btn:hover {
+        background-color: #45a049;
+    }
+
+    /* Result styling */
+    #result {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 18px;
+        color: #333;
+    }
+</style>
+    <style>
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: left;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+    
+        .search-container {
+            text-align: center;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+    
+        .search-container input {
+            width: 80%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    
+        .search-container button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #5c6bc0;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+    
+        .search-container button:hover {
+            background-color: #3f51b5;
+        }
+    
+        .image-container {
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .image-container img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            transition: transform 0.5s;
+            margin-bottom: 15px;
+        }
+    
+        .image-container img:hover {
+            transform: rotateY(360deg) scale(1.1);
+        }
+    
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    
+        .button-group button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #4caf50;
+            color: white;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        .button-group button:hover {
+            background-color: #388e3c;
+        }
+    </style>
+<script>
+function searchImage() {
+    const query = document.getElementById('search-query').value;
+
+    if (query) {
+        window.open(`https://yandex.ru/images/search?text=${query}`, '_blank');
+    } else {
+        alert("Qidiruv so'rovini kiriting!");
+    }
+}
+
+</script>
+
+
+<div class="wrapper">
+    <div class="search-container">
+        <h1>Rasm Qidirish</h1>
+        <input type="text" id="search-query" placeholder="Qidiruv...">
+        <button onclick="searchImage()">Qidirish</button>
+    </div>
+    
+</div>
+
+
+    </section>
+    
+    <style>
+        .ai-section {
+            padding: 40px;
+            background-image: url('{% static 'BG-KUTUBXONA.png'%}');
+            background-repeat: no-repeat;
+            background-color: black;
+            background-size: 100%;
+            text-align: center;
+        }
+    
+        .center {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+    
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+    
+        .cardL {
+            width: 20%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            perspective: 1000px;
+        }
+    
+        .cardL:hover {
+            transform: translateY(-10px) rotateY(10deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+    
+        .cardL:nth-child(-n+3) {
+            flex: 1 1 30%;
+        }
+    
+        .cardL:nth-child(n+4) {
+            flex: 1 1 22%;
+        }
+    
+        a {
+            text-decoration: none;
+            color: inherit; /* Linkning rangi normal matn rangiga o'xshaydi */
+            display: inline-block;
+            transition: all 0.3s ease; /* A tagida barcha hover effektlari uchun o'zgarish */
+        }
+    
+        a h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            position: relative;
+        }
+    
+        a:hover h1 {
+            color: #007bff; /* Hoverda matn rangi o'zgaradi */
+        }
+    
+        a:hover {
+            transform: scale(1.1); /* Hoverda linkni kattalashtirish */
+            text-decoration: none; /* Chizig'ini olib tashlash */
+        }
+    
+        a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #007bff;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+    
+        a:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    
+        @media (max-width: 1024px) {
+            .cardL {
+                width: 30%;
+            }
+    
+            .cardL:nth-child(-n+3) {
+                flex: 1 1 30%;
+            }
+    
+            .cardL:nth-child(n+4) {
+                flex: 1 1 30%;
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .card-container {
+                gap: 10px;
+            }
+    
+            .cardL {
+                width: 45%;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .cardL {
+                width: 100%;
+            }
+        }
+    </style> 
+    
+</section>
+<style>
+    a {
+        text-decoration: none;
+        color: inherit; /* Linkning rangi normal matn rangiga o'xshaydi */
+        display: inline-block;
+        transition: all 0.3s ease; /* A tagida barcha hover effektlari uchun o'zgarish */
+    }
+
+    a h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        position: relative;
+    }
+
+    a:hover h1 {
+        color: #007bff; /* Hoverda matn rangi o'zgaradi */
+    }
+
+    a:hover {
+        transform: scale(1.1); /* Hoverda linkni kattalashtirish */
+        text-decoration: none; /* Chizig'ini olib tashlash */
+    }
+
+    a::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #007bff;
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease;
+    }
+
+    a:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+</style>
+
+    
+    <script src="{% static  "script.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'logo.PNG' %}">
+    <title>NARPAY IM - Ustozlar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Orqa fon rasmlari */
+        @media (min-width: 769px) {
+            body {
+                background-image: url('https://i.pinimg.com/550x/9b/ef/b8/9befb83d4aba750caf00323306a1039e.jpg');
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-image: url('https://i.pinimg.com/550x/9b/f4/9f/9bf49fd9544608c468035597a5688a11.jpg');
+            }
+        }
+
+        .boglanish {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-img {
+            width: 93%; /* Rasmlar kengligi 93% qilib sozlandi */
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-title span {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .card-link {
+            font-size: 1rem;
+            color: #00ff00;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+
+        .card-link span {
+            color: #00ff00;
+            font-weight: 500;
+        }
+
+        /* Moslashuvchanlik */
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .card-img {
+                width: 93%; /* Planshetlarda ham 93% */
+                height: 180px;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .card-link {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-img {
+                width: 93%; /* Telefonlarda ham 93% */
+                height: 150px;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+            }
+
+            .card-link {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section id="spa-section4" class="boglanish">
+        <div class="card-container">
+            <div class="card">
+                <img class="card-img" src="{% static 'zovuch.jpg' %}" alt="ZOVUCH">
+                <h1 class="card-title">O'QUV ISHLARI BO'YICHA DIREKTOR O'RINBOSARI:<br><span>ERBOBOYEV JASURBEK SUHBATULLAYEVICH</span></h1>
+                <p class="card-link">TELEFON RAQAM:<br><span>+998945389000</span></p>
+            </div>
+            <div class="card">
+                <img class="card-img" src="{% static 'director.JPG' %}" alt="MAKTAB DIREKTORI">
+                <h1 class="card-title">MAKTAB DIREKTORI:<br><span>YO'LDASHEV BEKZOD BAHRIDDINIVICH</span></h1>
+                <p class="card-link">TELEFON RAQAM:<br><span>+998944716670</span></p>
+            </div>
+            <div class="card">
+                <img class="card-img" src="{% static 'hurramov.jpg' %}" alt="MA'NAVIYAT MA'RIFAT BO'YICHA DIREKTOR O'RINBOSARI">
+                <h1 class="card-title">MA'NAVIY MA'RIFAT BO'YICHA DIREKTOR O'RINBOSARI:<br><span>XURRAMOV BAXTIYOR FARXODOVICH</span></h1>
+                <p class="card-link">TELEFON RAQAM:<br><span>+998505009069</span></p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

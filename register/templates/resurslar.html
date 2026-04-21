@@ -1,0 +1,694 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Django Site</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Global Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #2d3748;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Main Section */
+        main.ai-section {
+            padding: 2rem 1rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.pinimg.com/originals/c2/93/19/c293194b27f2969f374192cae1f7c476.jpg') no-repeat center/cover;
+            color: #ffffff;
+            min-height: calc(100vh - 60px); /* Adjust for bottom bar */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .center {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Card Container */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 0.5rem;
+        }
+
+        .cardL {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cardL:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .cardL a h2 {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .cardL a:hover h2 {
+            color: #60a5fa;
+        }
+
+        /* Bottom Icon Bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #2563eb;
+            transition: color 0.3s ease, transform 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .icon-btn:hover {
+            color: #1e40af;
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #4b5563;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        /* Existing Styles for Sections (Adapted for Modals) */
+        /* Translation Section - Removed as not in original request */
+
+        /* Calculator */
+        .calculator {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .display {
+            width: 100%;
+            padding: 0.75rem;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            text-align: right;
+            margin-bottom: 0.75rem;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .buttons button {
+            padding: 0.75rem;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-height: 48px;
+            transition: background 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background: #1e40af;
+        }
+
+        .operator {
+            background: #f59e0b;
+        }
+
+        .operator:hover {
+            background: #d97706;
+        }
+
+        .clear {
+            background: #ef4444;
+        }
+
+        .clear:hover {
+            background: #dc2626;
+        }
+
+        /* Wikipedia Search */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            font-weight: 700;
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .search-button {
+            padding: 0.5rem 1rem;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-height: 48px;
+            transition: background 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: #1e40af;
+        }
+
+        .results {
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .result-item h3 a {
+            font-size: 1.1rem;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .result-item h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .result-item p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-top: 0.25rem;
+        }
+
+        .no-results {
+            padding: 1rem;
+            background: #fef2f2;
+            border-radius: 8px;
+            color: #b91c1c;
+            text-align: center;
+        }
+
+        /* Feedback Form */
+        .WaterCard.center {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        #taklif {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .button-30 {
+            padding: 0.5rem 1rem;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            min-height: 48px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .button-30:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        /* Map Link */
+        .hover-map-text {
+            display: block;
+            padding: 1.2rem 2rem;
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            border-radius: 16px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            margin: 0 auto;
+            max-width: 700px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .hover-map-text:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            color: #f0f9ff;
+        }
+
+        /* Image Search */
+        .wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .search-container button {
+            padding: 0.5rem 1rem;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-height: 48px;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        .search-container button:hover {
+            background: #1e40af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .card-container {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            main.ai-section {
+                padding: 1.5rem 0.75rem;
+            }
+
+            .card-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .hover-map-text {
+                font-size: clamp(1rem, 4vw, 1.5rem);
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box input,
+            .search-button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+
+            .icon-btn {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 300px) {
+            .center {
+                font-size: clamp(1rem, 4vw, 1.2rem);
+            }
+
+            .cardL a h2 {
+                font-size: 0.8rem;
+            }
+
+            .button-30, .search-button {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        #nima {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <main class="ai-section" id="spa-section5">
+        <h1 class="center">ONLINE KUTUBXONA</h1>
+    
+        <div class="card-container">
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/5-sinf-darsliklar"><h2>5-SINF</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/6-sinf-darsliklar"><h2>6-SINF</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/7-sinf-darsiklar"><h2>7-SINF</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/8-sinf-darsliklar"><h2>8-SINF</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/9-sinf-darsliklar"><h2>9-SINF</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/10-sinf-darsliklar"><h2>10-SINF</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/darsliklar/maktab-darsliklari/11-sinf-darsliklar"><h2>11-SINF</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/adabiyotlar/chet-el-adabiyoti/"><h2>Chet el-asarlar</h2></a>
+            </div>
+            <div class="cardL">
+                <a href="https://elibrary.tdpu.uz/adabiyotlar/ozbek-adabiyoti"><h2>O'zbek asarlar</h2></a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Icon Bar -->
+    <div class="bottom-bar">
+        <button class="icon-btn" onclick="openModal('calculatorModal')" aria-label="Kalkulyator">🧮</button>
+        <button class="icon-btn" onclick="openModal('wikiModal')" aria-label="Wikipedia">📖</button>
+        <button class="icon-btn" onclick="openModal('feedbackModal')" aria-label="Taklif">💡</button>
+        <button class="icon-btn" onclick="openModal('mapModal')" aria-label="Xarita">🗺️</button>
+        <button class="icon-btn" onclick="openModal('imageSearchModal')" aria-label="Rasm qidirish">🖼️</button>
+    </div>
+
+    <!-- Modals -->
+    <!-- Calculator Modal -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content calculator">
+            <button class="close-btn" onclick="closeModal('calculatorModal')" aria-label="Yopish">✕</button>
+            <h2 class="center" style="color: black;">Online Calculator</h2>
+            <input type="text" class="display" id="display" disabled aria-label="Kalkulyator displeyi">
+            <div class="buttons">
+                <button onclick="appendValue('7')" aria-label="7 raqami">7</button>
+                <button onclick="appendValue('8')" aria-label="8 raqami">8</button>
+                <button onclick="appendValue('9')" aria-label="9 raqami">9</button>
+                <button class="operator" onclick="appendValue('/')" aria-label="Bo'lish">/</button>
+                <button onclick="appendValue('4')" aria-label="4 raqami">4</button>
+                <button onclick="appendValue('5')" aria-label="5 raqami">5</button>
+                <button onclick="appendValue('6')" aria-label="6 raqami">6</button>
+                <button class="operator" onclick="appendValue('*')" aria-label="Ko'paytirish">*</button>
+                <button onclick="appendValue('1')" aria-label="1 raqami">1</button>
+                <button onclick="appendValue('2')" aria-label="2 raqami">2</button>
+                <button onclick="appendValue('3')" aria-label="3 raqami">3</button>
+                <button class="operator" onclick="appendValue('-')" aria-label="Ayirish">-</button>
+                <button onclick="appendValue('0')" aria-label="0 raqami">0</button>
+                <button onclick="appendValue('.')" aria-label="Nuqta">.</button>
+                <button onclick="calculate()" aria-label="Tenglik">=</button>
+                <button class="operator" onclick="appendValue('+')" aria-label="Qo'mak">+</button>
+                <button class="clear" onclick="clearDisplay()" aria-label="Tozalash">C</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wikipedia Modal -->
+    <div id="wikiModal" class="modal">
+        <div class="modal-content container">
+            <button class="close-btn" onclick="closeModal('wikiModal')" aria-label="Yopish">✕</button>
+            <h2 class="main-title">Wikipedia Ma'lumot Qidirish</h2>
+            <div class="search-box">
+                <input type="text" id="query" placeholder="Ma'lumot qidirish..." aria-label="Wikipedia qidiruv maydoni">
+                <button onclick="searchWiki()" class="search-button" aria-label="Ma'lumot qidirish">Qidirish</button>
+            </div>
+            <div id="results" class="results"></div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content WaterCard center">
+            <button class="close-btn" onclick="closeModal('feedbackModal')" aria-label="Yopish">✕</button>
+            <h2 id="nima" class="center">TAKLIF VA G'OYALARINGIZNI BIZGA YUBORING!</h2>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" class="input" id="taklif" name="taklif" placeholder="Fikrlaringizni yozing..." aria-label="Fikr yoki taklif kiritish">
+                <button class="button-30" type="submit" aria-label="Taklifni yuborish">Yuborish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('mapModal')" aria-label="Yopish">✕</button>
+            <a class="hover-map-text" href="https://maps.app.goo.gl/EqwNmyZCFiTu9ySK7" aria-label="Maktab joylashuvi xaritasi">𝕄𝕒𝕜𝕥𝕒𝕓 𝕛𝕠𝕪𝕝𝕒𝕤𝕙𝕦𝕧𝕚</a>
+        </div>
+    </div>
+
+    <!-- Image Search Modal -->
+    <div id="imageSearchModal" class="modal">
+        <div class="modal-content wrapper">
+            <button class="close-btn" onclick="closeModal('imageSearchModal')" aria-label="Yopish">✕</button>
+            <div class="search-container">
+                <h2 id="nima">Rasm Qidirish</h2>
+                <input type="text" id="search-query" placeholder="Qidiruv..." aria-label="Rasm qidiruv maydoni">
+                <button onclick="searchImage()" aria-label="Rasm qidirish">Qidirish</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Calculator Functions
+        const display = document.getElementById('display');
+
+        function appendValue(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                alert('Invalid input');
+                clearDisplay();
+            }
+        }
+
+        // Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Wikipedia Search
+        async function searchWiki() {
+            const query = document.getElementById('query').value;
+            if (!query) {
+                document.getElementById('results').innerHTML = '<div class="no-results">Iltimos, so\'rovni kiriting!</div>';
+                return;
+            }
+
+            const url = `https://uz.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&srsearch=${encodeURIComponent(query)}`;
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Tarmoq xatosi');
+                const data = await response.json();
+                const results = data.query.search;
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '';
+
+                if (results.length === 0) {
+                    resultsDiv.innerHTML = '<div class="no-results">Hech qanday natija topilmadi.</div>';
+                    return;
+                }
+
+                results.forEach(item => {
+                    const resultItem = document.createElement('div');
+                    resultItem.classList.add('result-item');
+                    resultItem.innerHTML = `
+                        <h3><a href="https://uz.wikipedia.org/?curid=${item.pageid}" target="_blank">${item.title}</a></h3>
+                        <p>${item.snippet}...</p>
+                    `;
+                    resultsDiv.appendChild(resultItem);
+                });
+            } catch (error) {
+                document.getElementById('results').innerHTML = `<div class="no-results">Xatolik yuz berdi: ${error.message}</div>`;
+                console.error('Xatolik:', error);
+            }
+        }
+
+        // Image Search
+        function searchImage() {
+            const query = document.getElementById('search-query').value;
+            if (query) {
+                window.open(`https://yandex.ru/images/search?text=${encodeURIComponent(query)}`, '_blank');
+            } else {
+                alert("Qidiruv so'rovini kiriting!");
+            }
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        };
+
+        // Add event listener for Wikipedia search button
+        if (document.querySelector('.search-button')) {
+            document.querySelector('.search-button').addEventListener('click', debounce(searchWiki, 300));
+        }
+    </script>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
